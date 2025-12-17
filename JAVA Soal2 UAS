@@ -1,0 +1,47 @@
+import java.util.*;
+import java.lang.Math;
+
+public class Soal2 UAS {
+    private static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n, i;
+
+        n = Integer.parseInt(input.nextLine());
+        String[] nama = new String[n], ket = new String[n];
+        int[] stok = new int[n], terjual = new int[n], sisa = new int[n];
+
+        for (i = 0; i <= n - 1; i++) {
+            nama[i] = input.nextLine();
+            stok[i] = Integer.parseInt(input.nextLine());
+            validasi(i, stok, terjual);
+            terjual[i] = Integer.parseInt(input.nextLine());
+            if (terjual[i] > stok[i]) {
+                System.out.println("INVALID");
+                terjual[i] = Integer.parseInt(input.nextLine());
+            }
+            sisa[i] = stok[i] - terjual[i];
+            if (sisa[i] == 0) {
+                ket[i] = "Habis, segera restock!";
+            } else {
+                if (sisa[i] < 5) {
+                    ket[i] = "Stok menipis.";
+                } else {
+                    ket[i] = "Stok aman";
+                }
+            }
+        }
+        System.out.println("Nama   StokAwal    Terjual   Sisa    Status");
+        for (i = 0; i <= n - 1; i++) {
+            System.out.println(nama[i] + " " + stok[i] + " " + terjual[i] + " " + sisa[i] + " " + ket[i]);
+        }
+    }
+    
+    public static void validasi(int i, int[] stok, int[] terjual) {
+        if (stok[i] >= 0) {
+        } else {
+            System.out.println("INVALID");
+            stok[i] = Integer.parseInt(input.nextLine());
+        }
+    }
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal3 UAS"/>
+        <attribute name="authors" value="ASUS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 04:45:06 PM"/>
+        <attribute name="created" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswMzozMToyOSBQTTsyNjM0"/>
+        <attribute name="edited" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswNDo0NTowNiBQTTsyOzI3NDQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i, a, x" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="nama" type="String" array="True" size="n"/>
+            <declare name="perangkat" type="Integer" array="True" size="n"/>
+            <assign variable="x" expression="0"/>
+            <call expression="total(x,n)"/>
+        </body>
+    </function>
+    <function name="total" type="None" variable="">
+        <parameters>
+            <parameter name="x" type="Integer" array="False"/>
+            <parameter name="n" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="total, a, i" type="Integer" array="False" size=""/>
+            <declare name="perangkat" type="Integer" array="True" size="n"/>
+            <declare name="nama" type="String" array="True" size="n"/>
+            <assign variable="total" expression="0"/>
+            <declare name="jumlah" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <assign variable="jumlah" expression="0"/>
+                <input variable="nama[i]"/>
+                <input variable="perangkat[i]"/>
+                <assign variable="a" expression="perangkat[i]"/>
+                <declare name="konsumsi" type="Integer" array="True" size="a"/>
+                <declare name="ket" type="Integer" array="True" size="a"/>
+                <for variable="x" start="0" end="a-1" direction="inc" step="1">
+                    <input variable="konsumsi[x]"/>
+                    <call expression="validasi(konsumsi,x)"/>
+                    <assign variable="total" expression="total+konsumsi[x]"/>
+                    <assign variable="jumlah" expression="jumlah+konsumsi[x]"/>
+                    <assign variable="ket[x]" expression="jumlah"/>
+                </for>
+                <output expression="nama[i] &amp; &quot; = &quot; &amp; jumlah" newline="True"/>
+            </for>
+            <output expression="&quot;Total konsumsi kamar = &quot; &amp; total &amp; &quot; wh&quot;" newline="True"/>
+            <if expression="total&gt;10000">
+                <then>
+                    <output expression="&quot;anda sudah melewati batas&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Konsumsi masih dalam batas wajar.&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="validasi" type="None" variable="">
+        <parameters>
+            <parameter name="konsumsi" type="Integer" array="True"/>
+            <parameter name="x" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <if expression="konsumsi[x]&lt;0">
+                <then>
+                    <output expression="&quot;INVALID&quot;" newline="True"/>
+                    <input variable="konsumsi[x]"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

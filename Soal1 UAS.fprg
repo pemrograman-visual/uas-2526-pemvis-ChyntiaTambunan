@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal1 UAS"/>
+        <attribute name="authors" value="ASUS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 04:44:22 PM"/>
+        <attribute name="created" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswMzowMDo0MyBQTTsyNjI2"/>
+        <attribute name="edited" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswNDo0NDoyMiBQTTsyOzI3NDE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <call expression="rating(n)"/>
+        </body>
+    </function>
+    <function name="rating" type="None" variable="rating">
+        <parameters>
+            <parameter name="n" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i, total, max, min, rat" type="Integer" array="False" size=""/>
+            <declare name="rata" type="Real" array="False" size=""/>
+            <assign variable="total" expression="0"/>
+            <assign variable="max" expression="0"/>
+            <assign variable="min" expression="99"/>
+            <assign variable="rat" expression="0"/>
+            <declare name="rating" type="Integer" array="True" size="n"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="rating[i]"/>
+                <call expression="validasi(n,rating,i)"/>
+                <assign variable="total" expression="total+rating[i]"/>
+                <if expression="rating[i]&gt;=4">
+                    <then>
+                        <assign variable="rat" expression="rat+1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;Daftar rating: &quot; &amp;rating[0]&amp; rating[1] &amp; rating[2] &amp;rating[3] &amp;rating[4] &amp;rating[5]" newline="True"/>
+            <assign variable="rata" expression="total/n"/>
+            <output expression="&quot;Rata-rata: &quot; &amp; rata" newline="True"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <if expression="rating[i]&gt;max">
+                    <then>
+                        <assign variable="max" expression="rating[i]"/>
+                    </then>
+                    <else>
+                        <assign variable="max" expression="max"/>
+                    </else>
+                </if>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <if expression="rating[i]&lt;min">
+                    <then>
+                        <assign variable="min" expression="rating[i]"/>
+                    </then>
+                    <else>
+                        <assign variable="min" expression="min"/>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;Tertinggi: &quot; &amp; max" newline="True"/>
+            <output expression="&quot;Terendah: &quot; &amp; min" newline="True"/>
+            <output expression="&quot;Reviewer rating &#8805;4: &quot; &amp; rat &amp; &quot; orang&quot;" newline="True"/>
+            <if expression="rat&lt;3">
+                <then>
+                    <output expression="&quot;Kantin perlu evaluasi manajemen!&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="rat&lt;4">
+                        <then>
+                            <output expression="&quot;Kondisi cukup, masih perlu peningkatan.&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Kantin dalam kondisi baik.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="validasi" type="None" variable="">
+        <parameters>
+            <parameter name="n" type="Integer" array="False"/>
+            <parameter name="rating" type="Integer" array="True"/>
+            <parameter name="i" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <if expression="rating[i]&gt;5 || rating[i]&lt;1">
+                <then>
+                    <output expression="&quot;INVALID&quot;" newline="True"/>
+                    <input variable="rating[i]"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal2 UAS"/>
+        <attribute name="authors" value="ASUS"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 04:44:45 PM"/>
+        <attribute name="created" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswMjoyNjo0NiBQTTsyNjM2"/>
+        <attribute name="edited" value="QVNVUztMQVBUT1AtQjJUOFMzM1Y7MjAyNS0xMi0xNzswNDo0NDo0NSBQTTsyOzI3NDY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="nama, ket" type="String" array="True" size="n"/>
+            <declare name="stok, terjual, sisa" type="Integer" array="True" size="n"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="nama[i]"/>
+                <input variable="stok[i]"/>
+                <call expression="validasi(i,stok,terjual)"/>
+                <input variable="terjual[i]"/>
+                <if expression="terjual[i]&gt;stok[i]">
+                    <then>
+                        <output expression="&quot;INVALID&quot;" newline="True"/>
+                        <input variable="terjual[i]"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="sisa[i]" expression="stok[i]-terjual[i]"/>
+                <if expression="sisa[i]=0">
+                    <then>
+                        <assign variable="ket[i]" expression="&quot;Habis, segera restock!&quot;"/>
+                    </then>
+                    <else>
+                        <if expression="sisa[i] &lt; 5">
+                            <then>
+                                <assign variable="ket[i]" expression="&quot;Stok menipis.&quot;"/>
+                            </then>
+                            <else>
+                                <assign variable="ket[i]" expression="&quot;Stok aman&quot;"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;Nama   StokAwal    Terjual   Sisa    Status&quot;" newline="True"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <output expression="nama[i] &amp;&quot; &quot;&amp; stok[i] &amp;&quot; &quot;&amp; terjual[i] &amp;&quot; &quot;&amp; sisa[i] &amp;&quot; &quot;&amp; ket[i]" newline="True"/>
+            </for>
+        </body>
+    </function>
+    <function name="validasi" type="None" variable="">
+        <parameters>
+            <parameter name="i" type="Integer" array="False"/>
+            <parameter name="stok" type="Integer" array="True"/>
+            <parameter name="terjual" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <if expression="stok[i]&gt;=0">
+                <then/>
+                <else>
+                    <output expression="&quot;INVALID&quot;" newline="True"/>
+                    <input variable="stok[i]"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

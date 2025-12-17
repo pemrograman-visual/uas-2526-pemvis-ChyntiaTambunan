@@ -1,0 +1,69 @@
+import java.util.*;
+import java.lang.Math;
+
+public class Soal1 UAS {
+    private static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n;
+
+        n = Integer.parseInt(input.nextLine());
+        rating(n);
+    }
+    
+    public static void rating(int n) {
+        int i, total, max, min, rat;
+        double rata;
+
+        total = 0;
+        max = 0;
+        min = 99;
+        rat = 0;
+        int[] rating = new int[n];
+
+        for (i = 0; i <= n - 1; i++) {
+            rating[i] = Integer.parseInt(input.nextLine());
+            validasi(n, rating, i);
+            total = total + rating[i];
+            if (rating[i] >= 4) {
+                rat = rat + 1;
+            }
+        }
+        System.out.println("Daftar rating: " + rating[0] + rating[1] + rating[2] + rating[3] + rating[4] + rating[5]);
+        rata = (double) total / n;
+        System.out.println("Rata-rata: " + rata);
+        for (i = 0; i <= n - 1; i++) {
+            if (rating[i] > max) {
+                max = rating[i];
+            } else {
+                max = max;
+            }
+        }
+        for (i = 0; i <= n - 1; i++) {
+            if (rating[i] < min) {
+                min = rating[i];
+            } else {
+                min = min;
+            }
+        }
+        System.out.println("Tertinggi: " + max);
+        System.out.println("Terendah: " + min);
+        System.out.println("Reviewer rating ≥4: " + rat + " orang");
+        if (rat < 3) {
+            System.out.println("Kantin perlu evaluasi manajemen!");
+        } else {
+            if (rat < 4) {
+                System.out.println("Kondisi cukup, masih perlu peningkatan.");
+            } else {
+                System.out.println("Kantin dalam kondisi baik.");
+            }
+        }
+    }
+    
+    public static void validasi(int n, int[] rating, int i) {
+        if (rating[i] > 5 || rating[i] < 1) {
+            System.out.println("INVALID");
+            rating[i] = Integer.parseInt(input.nextLine());
+        }
+    }
+}

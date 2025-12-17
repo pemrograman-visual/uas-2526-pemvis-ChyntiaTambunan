@@ -1,0 +1,64 @@
+import java.util.*;
+import java.lang.Math;
+
+public class Soal4 UAS {
+    private static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n, i, total, max, min;
+        String ketmin, ketmax;
+
+        n = Integer.parseInt(input.nextLine());
+        total = 0;
+        double rata;
+        String[] nama = new String[n];
+        int[] shift = new int[n];
+
+        max = 0;
+        min = 99;
+        for (i = 0; i <= n - 1; i++) {
+            nama[i] = input.nextLine();
+            shift[i] = Integer.parseInt(input.nextLine());
+            if (shift[i] < 0) {
+                i = i - 1;
+            }
+        }
+        for (i = 0; i <= n - 1; i++) {
+            total = total + shift[i];
+        }
+        for (i = 0; i <= n - 1; i++) {
+            if (shift[i] > max) {
+                max = shift[i];
+                ketmax = nama[i];
+            } else {
+                max = max;
+            }
+        }
+        for (i = 0; i <= n - 1; i++) {
+            if (shift[i] < min) {
+                min = shift[i];
+                ketmin = nama[i];
+            } else {
+                min = min;
+            }
+        }
+        rata = (double) total / n;
+        System.out.println("Daftar Shift: ");
+        for (i = 0; i <= n - 1; i++) {
+            System.out.println(nama[i] + " = " + shift[i]);
+        }
+        System.out.println("Total shift = " + total);
+        System.out.println("Rata-rata = " + rata);
+        System.out.println("Shift terbanyak = " + ketmax + "(" + max + ")");
+        System.out.println("Shift tersedikit = " + ketmin + "(" + min + ")");
+        if (rata < 3) {
+            System.out.println("Distribusi shift tidak merata.");
+        } else {
+            if (rata >= 5) {
+                System.out.println("Shift terlalu padat.");
+            } else {
+                System.out.println("Distribusi shift tidak merata, beberapa asisten terbebani.");
+            }
+        }
+    }
+}
